@@ -1,7 +1,7 @@
 {
 	"name": "Gamepress",
 	"namemsg": "skinname-gamepress",
-	"version": "1.4.0",
+	"version": "1.5.0",
 	"author": [
 		"Aleksandra Łączek",
 		"Jack Phoenix",
@@ -13,16 +13,18 @@
 	"descriptionmsg": "gamepress-desc",
 	"type": "skin",
 	"requires": {
-		"MediaWiki": ">= 1.43.0"
+		"MediaWiki": ">= 1.36.0"
 	},
+	"callback": "MediaWiki\\Skin\\Gamepress\\GamepressHooks::onRegistration",
 	"ValidSkinNames": {
 		"gamepress": {
+			"displayname": "Gamepress",
 			"class": "SkinTemplate",
 			"args": [
 				{
 					"name": "gamepress",
 					"bodyOnly": true,
-					"template": "GamepressTemplate",
+					"template": "MediaWiki\\Skin\\Gamepress\\GamepressTemplate",
 					"responsive": true,
 					"styles": [
 						"skins.gamepress.styles"
@@ -34,17 +36,21 @@
 			]
 		}
 	},
+	"attributes": {
+		"Theme": {
+			"Modules": {
+				"gamepress": [
+					"blue",
+					"green",
+					"orange"
+				]
+			}
+		}
+	},
 	"MessagesDirs": {
 		"SkinGamepress": [
 			"i18n"
 		]
-	},
-	"ThemeModules": {
-		"gamepress": [ "blue", "green", "orange" ]
-	},
-	"AutoloadClasses": {
-		"GamepressTemplate": "includes/GamepressTemplate.php",
-		"GamepressSkinNavigationService": "includes/GamepressSkinNavigationService.php"
 	},
 	"ResourceFileModulePaths": {
 		"localBasePath": "",
@@ -60,8 +66,10 @@
 				"content-tables": true,
 				"elements": true,
 				"i18n-ordered-lists": true,
+				"i18n-all-lists-margins": true,
 				"i18n-headings": true,
 				"interface": true,
+				"interface-message-box": true,
 				"interface-category": true,
 				"logo": true
 			},
@@ -110,5 +118,8 @@
 			}
 		}
 	},
-	"manifest_version": 1
+	"AutoloadNamespaces": {
+		"MediaWiki\\Skin\\Gamepress\\": "includes/"
+	},
+	"manifest_version": 2
 }

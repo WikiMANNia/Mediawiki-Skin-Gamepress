@@ -9,9 +9,14 @@
  * @see http://wp-themes.com/gamepress/
  */
 
+namespace MediaWiki\Skin\Gamepress;
+
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\Sanitizer;
+use MediaWiki\Skin\BaseTemplate;
+use MediaWiki\SpecialPage\SpecialPage;
 
 class GamepressTemplate extends BaseTemplate {
 	/**
@@ -24,8 +29,9 @@ class GamepressTemplate extends BaseTemplate {
 		global $wgSitename;
 
 		$skin = $this->getSkin();
+		$title = $skin->getTitle();
 
-		$this->data['pageLanguage'] = $skin->getTitle()->getPageLanguage()->getHtmlCode();
+		$this->data['pageLanguage'] = $title->getPageLanguage()->getHtmlCode();
 
 		$tagline = '';
 		if ( !$this->getMsg( 'tagline' )->isDisabled() ) {
