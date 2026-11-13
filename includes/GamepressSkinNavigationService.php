@@ -43,11 +43,11 @@ class GamepressSkinNavigationService {
 		}
 
 		if ( empty( $nodes ) ) {
-			$lines =
+			$msg_text =
 				$this->forContent
-				? explode( "\n", wfMessage( $messageName )->inContentLanguage()->text() )
-				: explode( "\n", wfMessage( $messageName )->text() );
-
+				? wfMessage( $messageName )->inContentLanguage()->text()
+				: wfMessage( $messageName )->text();
+			$lines = explode( "\n", $msg_text );
 			$nodes = $this->parseLines( $lines, $maxChildrenAtLevel );
 
 			if ( $useCache || $this->forContent ) {
@@ -165,7 +165,7 @@ class GamepressSkinNavigationService {
 			$services->hasService( 'UrlUtils' )
 			// MediaWiki 1.39+
 			? $services->getUrlUtils()
-			// MediaWiki >1.39
+			// MediaWiki <1.39
 			: wfGetUrlUtils();
 
 		$urlProtocols = $urlUtils->validProtocols();

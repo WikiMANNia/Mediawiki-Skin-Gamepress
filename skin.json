@@ -1,7 +1,7 @@
 {
 	"name": "Gamepress",
 	"namemsg": "skinname-gamepress",
-	"version": "1.5.0",
+	"version": "1.6.0",
 	"author": [
 		"Aleksandra Łączek",
 		"Jack Phoenix",
@@ -18,22 +18,29 @@
 	"callback": "MediaWiki\\Skin\\Gamepress\\GamepressHooks::onRegistration",
 	"ValidSkinNames": {
 		"gamepress": {
-			"displayname": "Gamepress",
 			"class": "SkinTemplate",
-			"args": [
-				{
-					"name": "gamepress",
-					"bodyOnly": true,
-					"template": "MediaWiki\\Skin\\Gamepress\\GamepressTemplate",
-					"responsive": true,
-					"styles": [
-						"skins.gamepress.styles"
-					],
-					"scripts": [
-						"skins.gamepress.site"
-					]
-				}
-			]
+			"args": [ {
+				"name": "gamepress",
+				"bodyOnly": true,
+				"template": "MediaWiki\\Skin\\Gamepress\\GamepressTemplate",
+				"menus": [
+					"user-page",
+					"user-interface-preferences",
+					"user-menu",
+					"notifications",
+					"associated-pages",
+					"views",
+					"actions",
+					"variants"
+				],
+				"responsive": true,
+				"styles": [
+					"skins.gamepress.styles"
+				],
+				"scripts": [
+					"skins.gamepress.site"
+				]
+			} ]
 		}
 	},
 	"attributes": {
@@ -66,10 +73,8 @@
 				"content-tables": true,
 				"elements": true,
 				"i18n-ordered-lists": true,
-				"i18n-all-lists-margins": true,
 				"i18n-headings": true,
 				"interface": true,
-				"interface-message-box": true,
 				"interface-category": true,
 				"logo": true
 			},

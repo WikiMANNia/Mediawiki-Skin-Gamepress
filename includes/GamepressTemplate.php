@@ -317,7 +317,18 @@ class GamepressTemplate extends BaseTemplate {
 	}
 
 	function renderPersonalTools() {
-		$this->customBox( 'personal', $this->getPersonalTools() );
+		if ( version_compare( MW_VERSION, 1.46, '<' ) ) {
+			$personalTools = $this->getPersonalTools();
+		} else {
+			$nav = $this->get( 'content_navigation' );
+			$personalTools = $this->getSkin()->getPersonalToolsForMakeListItem( array_merge(
+				$nav['user-interface-preferences'],
+				$nav['user-page'],
+				$nav['notifications'],
+				$nav['user-menu']
+			) );
+		}
+		$this->customBox( 'personal', $personalTools );
 	}
 
 	function searchBox() {
@@ -352,7 +363,17 @@ class GamepressTemplate extends BaseTemplate {
 	<div id="p-cactions" class="portlet widget" role="navigation">
 		<h3 class="widget-title"><?php $this->msg( 'views' ) ?></h3>
 			<ul><?php
-				foreach ( $this->data['content_actions'] as $key => $tab ) {
+				if ( version_compare( MW_VERSION, 1.46, '<' ) ) {
+					$contentActions = $this->data['content_actions'];
+				} else {
+					$nav = $this->get( 'content_navigation' );
+					// Flatten the menus the way core built the deprecated content_actions
+					$contentActions = array_filter(
+						array_merge( $nav['associated-pages'], $nav['views'], $nav['actions'], $nav['variants'] ),
+						static fn ( $tab ) => !( $tab['redundant'] ?? false )
+					);
+				}
+				foreach ( $contentActions as $key => $tab ) {
 					echo '
 				' . $this->makeListItem( $key, $tab );
 				} ?>

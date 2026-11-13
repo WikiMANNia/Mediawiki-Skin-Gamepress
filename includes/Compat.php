@@ -38,6 +38,13 @@ class Compat {
 				'MediaWiki\\Config\\GlobalVarConfig'
 			);
 		}
+		if ( class_exists( \Sanitizer::class ) && /* < 1.41 */
+			!class_exists( 'MediaWiki\\Parser\\Sanitizer', false ) ) {
+			class_alias(
+				\Sanitizer::class,
+				'MediaWiki\\Parser\\Sanitizer'
+			);
+		}
 		if ( class_exists( \RequestContext::class ) && /* < 1.42 */
 			!class_exists( 'MediaWiki\\Context\\RequestContext', false ) ) {
 			class_alias(
@@ -45,32 +52,18 @@ class Compat {
 				'MediaWiki\\Context\\RequestContext'
 			);
 		}
-		if ( class_exists( \Skin::class ) && /* < 1.44 */
-			!class_exists( 'MediaWiki\\Skin\\Skin', false ) ) {
-			class_alias(
-				\Skin::class,
-				'MediaWiki\\Skin\\Skin'
-			);
-		}
-		if ( class_exists( \BaseTemplate::class ) && /* < ? */
+		if ( class_exists( \BaseTemplate::class ) && /* < 1.44 */
 			!class_exists( 'MediaWiki\\Skin\\BaseTemplate', false ) ) {
 			class_alias(
 				\BaseTemplate::class,
 				'MediaWiki\\Skin\\BaseTemplate'
 			);
 		}
-		if ( class_exists( \SkinComponentUtils::class ) && /* < ? */
-			!class_exists( 'MediaWiki\\Skin\\SkinComponentUtils', false ) ) {
+		if ( class_exists( \Skin::class ) && /* < 1.44 */
+			!class_exists( 'MediaWiki\\Skin\\Skin', false ) ) {
 			class_alias(
-				\SkinComponentUtils::class,
-				'MediaWiki\\Skin\\SkinComponentUtils'
-			);
-		}
-		if ( class_exists( \Sanitizer::class ) && /* < ? */
-			!class_exists( 'MediaWiki\\Parser\\Sanitizer', false ) ) {
-			class_alias(
-				\Sanitizer::class,
-				'MediaWiki\\Parser\\Sanitizer'
+				\Skin::class,
+				'MediaWiki\\Skin\\Skin'
 			);
 		}
 	}

@@ -11,5 +11,9 @@
 	"gamepress-navigation": "* mainpage|mainpage-description\n\n** faqpage|faq\n\n** recentchanges-url|recentchanges",
 	"gamepress-prefooter-1": "",
 	"gamepress-prefooter-2": "",
-	"gamepress-prefooter-3": ""
+	"gamepress-prefooter-3": "",
+	"theme-name-gamepress-blue": "blue",
+	"theme-name-gamepress-default": "default",
+	"theme-name-gamepress-green": "green",
+	"theme-name-gamepress-orange": "orange"
 }
